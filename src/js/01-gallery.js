@@ -12,6 +12,7 @@ const markup = galleryItems
   )
   .join('');
 galleryEl.insertAdjacentHTML('beforeend', markup);
+
 galleryEl.addEventListener(`click`, onImageClick);
 
 function onImageClick(event) {
@@ -24,5 +25,5 @@ function onImageClick(event) {
     captionsData: 'alt',
     captionDelay: 250,
   });
-  gallery.open();
+  gallery.refresh();
 }
