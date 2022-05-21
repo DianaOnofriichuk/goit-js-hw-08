@@ -1,19 +1,19 @@
 const emailEl = document.querySelector('.email-js');
 const messageEl = document.querySelector('.message-js');
 const form = document.querySelector('.feedback-form');
+import throttle from 'lodash.throttle';
 
 if (localStorage.getItem('email') !== null || localStorage.getItem('message') !== null) {
   emailEl.value = JSON.parse(localStorage.getItem('email'));
   messageEl.textContent = JSON.parse(localStorage.getItem('message'));
 }
 
-emailEl.addEventListener('input', onEmailImput);
-
+emailEl.addEventListener('input', throttle(onEmailImput, 500));
 function onEmailImput(e) {
   localStorage.setItem('email', JSON.stringify(e.currentTarget.value));
 }
 
-messageEl.addEventListener('input', onMessageImput);
+messageEl.addEventListener('input', throttle(onMessageImput, 500));
 function onMessageImput(e) {
   localStorage.setItem('message', JSON.stringify(e.currentTarget.value));
 }
